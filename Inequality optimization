@@ -1,0 +1,12 @@
+install.packages("lpSolve") # use this inside R Studio
+lp (direction = "min", objective.in, const.mat, const.dir, const.rhs,transpose.constraints = TRUE, int.vec, presolve=0, compute.sens=0,binary.vec, all.int=FALSE, all.bin=FALSE, scale = 196, dense.const,num.bin.solns=1, use.rw=FALSE)
+library(lpSolve)
+
+f.obj = c(50,20,30,80)
+f.con = matrix(c(400,200,150,500,3,2,0,0,2,2,4,4,2,4,1,5),nrow=4,byrow=T) 
+f.dir = c(">=",">=",">=",">=")
+f.rhs = c(500,6,10,8)
+ans = lp("min",f.obj,f.con,f.dir,f.rhs,compute.sens = T)
+print(ans$solution)
+print(ans$objval)
+print(ans$duals)
